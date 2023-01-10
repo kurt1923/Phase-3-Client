@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom";
 import Login from "./Login";
 import Logincreate from "./Logincreate";
 import Home from "./Home";
-
+import Admin from "./admin folder/Admin";
+import Customerprojects from "./Customerprojects";
 
 function App() {
   const [customers, setCustomers] = useState([]);
+  const [user, setUser] = useState([]);
   // const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
@@ -18,13 +20,37 @@ function App() {
       });
   }, []);
 
+  function adminDelete(id) {
+    const updatedCustomers = customers.filter((customer) => customer.id !== id);
+    setCustomers(updatedCustomers);
+  }
+
+  const adminPage =
+    user.full_name === "admin" && user.customer_id === 1111 ? (
+      <Admin customers={customers} setCustomers={setCustomers} adminDelete={adminDelete} />
+    ) : null;
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
-      <Logincreate setCustomers={setCustomers} customers={customers} />
-      <Login customers={customers} setCustomers={setCustomers} />
+      {adminPage}
+      <Logincreate
+        setCustomers={setCustomers}
+        customers={customers}
+        user={user}
+        setUser={setUser}
+      />
+      <Login customers={customers} setCustomers={setCustomers} user={user} setUser={setUser} />
+      {user === undefined ? (
+        <h3>
+          No matching email and passcode. Please verify email and passcode are
+          correct or create new Account.
+        </h3>
+      ) : (
+        <Customerprojects user={user} setUser={setUser} />
+      )}
     </div>
   );
 }

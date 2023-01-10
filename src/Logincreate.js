@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Logincreate({ setCustomers, customers }) {
+function Logincreate({ setCustomers, customers, user, setUser }) {
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -20,6 +20,7 @@ function Logincreate({ setCustomers, customers }) {
       .then((r) => r.json())
       .then((data) => {
         addCustomer(data);
+        setUser(data)
       });
       setFormData({
         full_name: "",
@@ -35,7 +36,7 @@ function Logincreate({ setCustomers, customers }) {
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.id]: e.target.value });
-    console.log(formData);
+    console.log(user);
   }
   function matchNumbers(e) {
     if (e.target.value.match(/^[0-9]+$/)) {

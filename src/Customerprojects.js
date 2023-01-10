@@ -12,7 +12,8 @@ function Customerprojects({ user, setUser }) {
       setProjects(data)
     })
   }, [user])
-console.log(projects)
+  ///check if this is needed
+
 
 function handleDelete(id) {
   const updatedProjects = projects.filter((project) => project.id !== id)
@@ -24,8 +25,6 @@ function addNewProject(addedProject) {
     setProjects(updatedProjects)
   }
   
-
-
 const projectCards = projects.map((project) => (
     <Projectcard 
     key={project.id}

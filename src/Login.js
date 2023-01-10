@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Customerprojects from "./Customerprojects";
 
-function Login({ customers }) {
+function Login({ customers, user, setUser }) {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
-  const [user, setUser] = useState([])
+  
   
 
   function handleSubmit(e) {
@@ -45,14 +45,7 @@ function Login({ customers }) {
         />
         <button type="submit">Login</button>
       </form>
-      {user === undefined ? (
-        <h3>
-          No matching email and passcode. Please verify email and passcode are
-          correct or create new Account.
-        </h3>
-      ) : (
-        <Customerprojects user={user} setUser={setUser} />
-      )}
+      
     </div>
   );
 }
