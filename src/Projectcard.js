@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 function Projectcard({ project, handleDelete }) {
   
   function deleteProject() {

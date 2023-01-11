@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import Login from "./Login";
-import Logincreate from "./Logincreate";
+import Login from "./login folder/Login";
+import Logincreate from "./login folder/Logincreate";
 import Home from "./Home";
 import Admin from "./admin folder/Admin";
 import Customerprojects from "./Customerprojects";
+
 
 function App() {
   const [customers, setCustomers] = useState([]);
@@ -19,7 +20,7 @@ function App() {
         setCustomers(data);
       });
   }, []);
-
+console.log(user)
   function adminDelete(id) {
     const updatedCustomers = customers.filter((customer) => customer.id !== id);
     setCustomers(updatedCustomers);
@@ -43,7 +44,7 @@ function App() {
         setUser={setUser}
       />
       <Login customers={customers} setCustomers={setCustomers} user={user} setUser={setUser} />
-      {user === undefined ? (
+      {user === undefined || [] ? (
         <h3>
           No matching email and passcode. Please verify email and passcode are
           correct or create new Account.

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Customerprojects from "./Customerprojects";
+
 
 function Login({ customers, user, setUser }) {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   
   
-
   function handleSubmit(e) {
     e.preventDefault();
     const findUser = customers.find(

@@ -3,15 +3,15 @@ import Projectcard from './Projectcard'
 import Createnewproject from "./Createnewproject";
 
 function Customerprojects({ user, setUser }) {
- const [projects, setProjects] = useState([])
+ const [projects, setProjects] = useState([user.projects])
   
- useEffect(() => {
-    fetch(`http://127.0.0.1:9292/customers/${user.id}/projects`)
-    .then((r) => r.json())
-    .then((data) => {
-      setProjects(data)
-    })
-  }, [user])
+//  useEffect(() => {
+//     fetch(`http://127.0.0.1:9292/customers/${user.id}/projects`)
+//     .then((r) => r.json())
+//     .then((data) => {
+//       setProjects(data)
+//     })
+//   }, [user])
   ///check if this is needed
 
 
