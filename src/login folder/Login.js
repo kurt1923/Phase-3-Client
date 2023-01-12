@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import Logincreate from "./Logincreate";
+import { useNavigate } from "react-router-dom";
 
 
-function Login({ customers, user, setUser }) {
+function Login({ setCustomers, customers, user, setUser }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
+  const [createAccount, setCreateAccount] = useState(false);
   
   
   function handleSubmit(e) {
@@ -16,16 +20,22 @@ function Login({ customers, user, setUser }) {
     setUser(findUser);
     setEmail("");
     setPwd("");
+    navigate("/Customerprojects");
+    console.log(user)
   }
   function matchNumbers(e) {
     if (e.target.value.match(/[0-9]/)) {
       setPwd(e.target.value);
     }
+    else {setPwd("")}
   }
 
+  function createAccountbtn() {
+    setCreateAccount(!createAccount);
+  }
   return (
     <div className="Login">
-      <h2>Login</h2>
+      <h2>Login</h2> 
       <form className="login_form" onSubmit={handleSubmit}>
         <label>Email</label>
         <input
@@ -38,12 +48,23 @@ function Login({ customers, user, setUser }) {
         <input
           // type="password"
           maxLength={4}
+          minLength={4}
           placeholder="Enter 4 digit passcode"
           value={pwd}
           onChange={matchNumbers}
         />
         <button type="submit">Login</button>
       </form>
+      <div>
+      <button onClick={createAccountbtn}>Create Account</button>
+      {createAccount ? 
+      <Logincreate
+              setCustomers={setCustomers}
+              customers={customers}
+              user={user}
+              setUser={setUser}
+            /> : null}
+      </div>
       
     </div>
   );

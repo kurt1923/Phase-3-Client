@@ -28,7 +28,10 @@ function Createnewproject({user, addNewProject}) {
     : null
   ))
   return (
-    <div>{newProjectCards}</div>
+    <div>
+      <h4>pick new projects</h4>
+      {newProjectCards}
+      </div>
   )
 }
 
