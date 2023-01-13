@@ -3,9 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./login folder/Login";
 import Home from "./Home";
 import Admin from "./admin folder/Admin";
-import Customerprojects from "./Customerprojects";
+import Customerprojects from "./projects/Customerprojects";
 import NavBar from "./NavBar";
-import Createnewproject from "./Createnewproject";
+import Createnewproject from "./createprojects/Createnewproject";
 
 function App() {
   const [customers, setCustomers] = useState([]);
@@ -24,6 +24,7 @@ function App() {
         setCustomers(data);
       });
   }, []);
+
   // console.log(user);
   console.log(user.projects);
 
@@ -104,5 +105,13 @@ function App() {
     </div>
   );
 }
+// const Switch = (str) => ({
+//   "Yes": "517",
+//   "No": "518",
+// })[str] || '';
+
+// console.log(Switch("Yes")); // 517
+// console.log(Switch("No"));  // 518
+// console.log(Switch("Non matching value")); // Empty
 
 export default App;

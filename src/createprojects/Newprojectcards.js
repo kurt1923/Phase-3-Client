@@ -1,4 +1,5 @@
 import React from "react";
+import Additems from "./Additems";
 
 function Newprojectcards({ newProject, user, addNewProject }) {
   function submitNewProject(e) {
@@ -29,6 +30,7 @@ function Newprojectcards({ newProject, user, addNewProject }) {
         <h5>{newProject.project_description}</h5>
         <button type="submit">Add</button>
       </form>
+      <Additems newProject={newProject}/>
     </div>
   );
 }
