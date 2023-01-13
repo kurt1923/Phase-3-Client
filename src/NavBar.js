@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function NavBar() {
+function NavBar({ noUsers, user, logOut }) {
   return (
     <nav className="navigationWrapper">
       <ul className="navigation">
@@ -10,26 +10,36 @@ function NavBar() {
             Home
           </NavLink>
         </li>
+        {user.email === "admin" && user.customer_id === 1111 ? (
         <li className="navli">
+          <NavLink className="nav" to="/Admin">
+            Admin
+          </NavLink>
+        </li>
+        ) : null}
+        {noUsers ? <li className="navli">
           <NavLink className="nav" to="/Login">
             Login
           </NavLink>
-        </li>
+        </li> : (
+          <>
         <li className="navli">
           <NavLink className="nav" to="/Customerprojects">
-            Projects
+            My Projects
           </NavLink>
         </li>
         <li className="navli">
-          <NavLink className="nav" to="/Videos">
-            Videos
+          <NavLink className="nav" to="/Createnewproject" >
+            Create Projects
           </NavLink>
         </li>
         <li className="navli">
-          <NavLink className="nav" to="/Splits">
-            Splits
+          <NavLink className="nav" to="/Login" onClick={logOut}>
+            Logout
           </NavLink>
         </li>
+        </>
+        )}
       </ul>
     </nav>
   );

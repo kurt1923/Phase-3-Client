@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-function Logincreate({ setCustomers, customers, user, setUser, setCreateAccount }) {
+function Logincreate({
+  setCustomers,
+  customers,
+  user,
+  setUser,
+  setCreateAccount,
+}) {
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -20,17 +26,18 @@ function Logincreate({ setCustomers, customers, user, setUser, setCreateAccount 
       .then((r) => r.json())
       .then((data) => {
         addCustomer(data);
-        setUser(data)
-        setCreateAccount(false)
+        setUser(data);
+        console.log(data);
       });
-      setFormData({
-        full_name: "",
-        email: "",
-        phone_number: "",
-        customer_id: "",
-      });
+    setFormData({
+      full_name: "",
+      email: "",
+      phone_number: "",
+      customer_id: "",
+    });
+    console.log(user);
   }
-
+  console.log(user);
   function addCustomer(data) {
     setCustomers([...customers, data]);
   }

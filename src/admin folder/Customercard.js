@@ -8,7 +8,7 @@ function Customercard({customer, adminDelete}) {
     });
     adminDelete(customer.id);
   }
-    
+  
     return (
     <div>
         <h4>{customer.full_name}</h4>

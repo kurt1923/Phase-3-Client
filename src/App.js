@@ -5,11 +5,17 @@ import Home from "./Home";
 import Admin from "./admin folder/Admin";
 import Customerprojects from "./Customerprojects";
 import NavBar from "./NavBar";
+import Createnewproject from "./Createnewproject";
 
 function App() {
   const [customers, setCustomers] = useState([]);
   const [user, setUser] = useState([]);
-  
+  const [projects, setProjects] = useState([]);
+  const noUsers = user === undefined || user.length === 0;
+
+  useEffect(() => {
+    setProjects(user.projects);
+  }, [user]);
 
   useEffect(() => {
     fetch("http://127.0.0.1:9292/customers")
@@ -18,25 +24,29 @@ function App() {
         setCustomers(data);
       });
   }, []);
-  console.log("hi");
+  // console.log(user);
+  console.log(user.projects);
 
   function adminDelete(id) {
     const updatedCustomers = customers.filter((customer) => customer.id !== id);
     setCustomers(updatedCustomers);
   }
+  function handleDelete(id) {
+    const updatedProjects = projects.filter((project) => project.id !== id);
+    setProjects(updatedProjects);
+  }
 
-  const adminPage =
-    user.email === "admin" && user.customer_id === 1111 ? (
-      <Admin
-        customers={customers}
-        setCustomers={setCustomers}
-        adminDelete={adminDelete}
-      />
-    ) : null;
+  function addNewProject(addedProject) {
+    const updatedProjects = [...projects, addedProject];
+    setProjects(updatedProjects);
+  }
 
+  function logOut() {
+    setUser([]);
+  }
   return (
     <div className="App">
-      <NavBar />
+      <NavBar noUsers={noUsers} user={user} logOut={logOut} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -47,6 +57,9 @@ function App() {
               setCustomers={setCustomers}
               user={user}
               setUser={setUser}
+              noUsers={noUsers}
+              projects={projects}
+              setProjects={setProjects}
             />
           }
         />
@@ -56,13 +69,38 @@ function App() {
             <Customerprojects
               user={user}
               setUser={setUser}
+              projects={projects}
+              setProjects={setProjects}
+              noUsers={noUsers}
+              handleDelete={handleDelete}
+            />
+          }
+        />
+        <Route
+          path="/Admin"
+          element={
+            <Admin
+              user={user}
+              customers={customers}
+              setCustomers={setCustomers}
+              adminDelete={adminDelete}
+            />
+          }
+        />
+        <Route
+          path="/Createnewproject"
+          element={
+            <Createnewproject
+              user={user}
+              noUsers={noUsers}
+              addNewProject={addNewProject}
+              handleDelete={handleDelete}
+              projects={projects}
+              setProjects={setProjects}
             />
           }
         />
       </Routes>
-      {adminPage}
-
-      
     </div>
   );
 }
