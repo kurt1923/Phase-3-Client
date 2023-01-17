@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   // console.log(user);
-  console.log(user.projects);
+  
 
   function adminDelete(id) {
     const updatedCustomers = customers.filter((customer) => customer.id !== id);
@@ -59,8 +59,8 @@ function App() {
               user={user}
               setUser={setUser}
               noUsers={noUsers}
-              projects={projects}
-              setProjects={setProjects}
+              // projects={projects}
+              // setProjects={setProjects}
             />
           }
         />
@@ -95,9 +95,9 @@ function App() {
               user={user}
               noUsers={noUsers}
               addNewProject={addNewProject}
-              handleDelete={handleDelete}
-              projects={projects}
-              setProjects={setProjects}
+              // handleDelete={handleDelete}
+              // projects={projects}
+              // setProjects={setProjects}
             />
           }
         />
@@ -113,5 +113,9 @@ function App() {
 // console.log(Switch("Yes")); // 517
 // console.log(Switch("No"));  // 518
 // console.log(Switch("Non matching value")); // Empty
+
+
+///ideas
+////lets try making when the user clicks to add a project they are directed to that project page. from there they can add items to the project. once all the items are added they can make a post request for all the items to be added to the project.
 
 export default App;

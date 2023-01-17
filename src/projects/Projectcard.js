@@ -8,7 +8,7 @@ function Projectcard({ project, handleDelete }) {
     handleDelete(project.id);
   }
 
-  console.log(project.id);
+  console.log(project);
   return (
     <>
       <li>{project.project_name}</li>

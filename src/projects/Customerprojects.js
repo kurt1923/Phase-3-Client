@@ -3,9 +3,9 @@ import Projectcard from "./Projectcard";
 
 function Customerprojects({ user, noUsers, projects, handleDelete }) {
   return (
-    <div className="user_page">
+    <div>
         {noUsers ? null : (
-      <div>
+      <div  className="user_page">
           <>
             <h2>{user.full_name}'s Projects</h2>
             <h3>

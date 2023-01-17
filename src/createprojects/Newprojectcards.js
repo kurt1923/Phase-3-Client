@@ -1,7 +1,7 @@
 import React from "react";
 import Additems from "./Additems";
 
-function Newprojectcards({ newProject, user, addNewProject }) {
+function Newprojectcards({ newProject, user, addNewProject, items }) {
   function submitNewProject(e) {
     const newProjectData = {
       project_name: newProject.project_name,
@@ -21,16 +21,22 @@ function Newprojectcards({ newProject, user, addNewProject }) {
       .then((data) => {
         addNewProject(data);
       });
-    console.log(newProjectData);
   }
+  console.log(newProject.items);
   return (
-    <div>
-      <form onSubmit={submitNewProject}>
-        <h3>{newProject.project_name}</h3>
+    <div className="p-2 col-lg-4 col-md-6 col-sm-12 d-flex align-items-stretch">
+      <div className="p-2 card w-100">
+        <h3 className="card-title text-center">{newProject.project_name}</h3>
+        <img src="../src/pics/fan.jpg" alt="fan" className="img-fluid"></img>
+
         <h5>{newProject.project_description}</h5>
-        <button type="submit">Add</button>
-      </form>
-      <Additems newProject={newProject}/>
+        <Additems newProject={newProject} items={items} />
+        <div class="d-flex flex-row justify-content-center mt-auto">
+        <button onClick={submitNewProject} type="submit" className="btn btn-secondary">
+          Add
+        </button>
+        </div>
+      </div>
     </div>
   );
 }
