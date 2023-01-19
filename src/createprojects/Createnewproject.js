@@ -12,6 +12,7 @@ function Createnewproject({ user, addNewProject, noUsers }) {
       });
   }, []);
 
+
   const newProjectCards = newProjects.map((newProject) =>
     newProject.customer_id === 0 && user != null ? (
       <Newprojectcards
@@ -25,7 +26,7 @@ function Createnewproject({ user, addNewProject, noUsers }) {
   );
   return (
     <div className="container">
-      <h2 className="p-4 title text-center">Select A Project To Add To Your Page</h2>
+      <h2 className="p-5 title text-center">Select A Project To Add To Your Page</h2>
       {noUsers ? null : (
       <div className="row">
       {newProjectCards}

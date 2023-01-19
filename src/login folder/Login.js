@@ -24,8 +24,6 @@ function Login({ setCustomers, customers, user, setUser, noUsers }) {
     setPwd("");
     navigate("/Customerprojects");
 
-    console.log(user);
-    //kurtv0727@gmail.com
   }
   function matchNumbers(e) {
     if (e.target.value.match(/[0-9]/)) {
@@ -45,7 +43,7 @@ function Login({ setCustomers, customers, user, setUser, noUsers }) {
           <h3 className="card-title text-center">Login</h3>
           <form onSubmit={handleSubmit}>
             <div className="p-2 form-group">
-              <label for="exampleInputEmail1">Email address</label>
+              <label htmlFor="exampleInputEmail1">Email address</label>
               <input
                 type="text"
                 className="form-control form-control-sm"
@@ -55,7 +53,7 @@ function Login({ setCustomers, customers, user, setUser, noUsers }) {
               />
             </div>
             <div className="p-2 form-group">
-              <label for="exampleInputPassword1">Password</label>
+              <label htmlFor="exampleInputPassword1">Password</label>
               <input
                 // type="password"
                 maxLength={4}

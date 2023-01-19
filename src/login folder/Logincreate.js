@@ -9,29 +9,33 @@ function Logincreate({ setCustomers, customers, user, setUser }) {
     customer_id: "",
   });
   const navigate = useNavigate();
-
+  console.log(formData.customer_id);
   function handleSubmit(e) {
-    e.preventDefault();
-    fetch("http://127.0.0.1:9292/customers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        addCustomer(data);
-        setUser(data);
-        navigate("/Customerprojects");
-        console.log(data);
+    if (formData.email.length > 9) {
+      e.preventDefault();
+      fetch("http://127.0.0.1:9292/customers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          addCustomer(data);
+          setUser(data);
+          navigate("/Customerprojects");
+          console.log(data);
+        });
+      setFormData({
+        full_name: "",
+        email: "",
+        phone_number: "",
+        customer_id: "",
       });
-    setFormData({
-      full_name: "",
-      email: "",
-      phone_number: "",
-      customer_id: "",
-    });
+    } else {
+      alert("Please complete form with valid email and 4 digit password.");
+    }
   }
 
   function addCustomer(data) {
@@ -43,8 +47,10 @@ function Logincreate({ setCustomers, customers, user, setUser }) {
     console.log(user);
   }
   function matchNumbers(e) {
-    if (e.target.value.match(/^[0-9]+$/)) {
+    if (e.target.value.match(/[0-9]/)) {
       setFormData({ ...formData, [e.target.id]: e.target.value });
+    } else {
+      setFormData({ ...formData, [e.target.id]: "" });
     }
   }
 
@@ -92,6 +98,7 @@ function Logincreate({ setCustomers, customers, user, setUser }) {
               // type="password"
               placeholder="Enter 4 digit passcode"
               className="form-control form-control-sm"
+              minLength={4}
               maxLength={4}
               id="customer_id"
               value={formData.customer_id}

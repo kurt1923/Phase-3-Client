@@ -7,7 +7,7 @@ function NavBar({ noUsers, user, logOut }) {
       <div className="container-fluid">
       <img className="logo" src="./pics/logo REVISED.jpg" alt="Logo" />
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -15,9 +15,9 @@ function NavBar({ noUsers, user, logOut }) {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-md-auto gap-3">
             <li className="nav-item rounded">
               <NavLink className="nav-link active" aria-current="page" to="/">
@@ -57,7 +57,7 @@ function NavBar({ noUsers, user, logOut }) {
                 </li>
               </>
             )}
-            <li class="nav-item dropdown rounded">
+            <li className="nav-item dropdown rounded">
               <span
                 className="nav-link dropdown-toggle"
                 id="navbarDropdown"
@@ -76,11 +76,18 @@ function NavBar({ noUsers, user, logOut }) {
                     <NavLink to="/Login">Login</NavLink>
                   </li>
                 ) : (
+                  <>
+                  <li className="dropdown-item">
+                  <NavLink to="/Customerinfo" >
+                    Info
+                  </NavLink>
+                </li>
                   <li className="dropdown-item">
                     <NavLink to="/Login" onClick={logOut}>
                       Logout
                     </NavLink>
                   </li>
+                </>
                 )}
               </ul>
             </li>
