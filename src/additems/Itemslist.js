@@ -5,9 +5,9 @@ function Itemslist({ project, user, setEditProject, editProject, storeItems, set
  
 
 
-  const itemsList = storeItems.map((storeItem) => {
-    if (storeItem.quantity === 0 && storeItem.project_category === editProject.project_name) {
-      return (
+  const itemsList = storeItems.map((storeItem) => (
+    storeItem.quantity === 0 && storeItem.project_category === editProject.project_name ?
+       (
          <Itemcards
           key={storeItem.id}
           storeItem={storeItem}
@@ -18,9 +18,8 @@ function Itemslist({ project, user, setEditProject, editProject, storeItems, set
           setStoreItems={setStoreItems}
           addNewItem={addNewItem}
         />
-      );
-      }
-    });
+      ) : null
+  ));  
 
     return (
         <div className="container">

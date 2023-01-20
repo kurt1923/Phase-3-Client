@@ -27,6 +27,7 @@ function Itemcards({ storeItem, user, setEditProject, editProject, storeItems, s
 console.log(editProject.id)
   
   return (
+    <>
     <tr>
       <td className="item">{storeItem.item_name}</td>
       <td className="price">
@@ -34,6 +35,7 @@ console.log(editProject.id)
       </td>
       <button className="m-2 btn btn-secondary" onClick={submitNewItem}>Add to Project</button>
     </tr>
+    </>
   );
 }
 //2 buttons. one to add item to project with post request. one to update item quantity with patch request

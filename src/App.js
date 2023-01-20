@@ -7,26 +7,31 @@ import Customerprojects from "./projects/Customerprojects";
 import NavBar from "./NavBar";
 import Createnewproject from "./createprojects/Createnewproject";
 import Customerinfo from "./login folder/Customerinfo";
-import Itemslist from "./projects/additems/Itemslist";
+import Itemslist from "./additems/Itemslist";
+import Edititems from "./itemQuantity/Edititems";
 
 function App() {
   const [customers, setCustomers] = useState([]);
   const [user, setUser] = useState([]);
   const [projects, setProjects] = useState([]);
-  const noUsers = user === undefined || user.length === 0;
   const [editProject, setEditProject] = useState([]);
   const [storeItems, setStoreItems] = useState([]);
-  // const aaa = user.projects;
-
-  useEffect(() => {
-    setProjects(user.projects);
-  }, [user]);
+  const noUsers = user === undefined || user.length === 0;
+  
 
   useEffect(() => {
     fetch("http://127.0.0.1:9292/customers")
       .then((r) => r.json())
       .then((data) => {
         setCustomers(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`http://127.0.0.1:9292/projects`)
+      .then((r) => r.json())
+      .then((data) => {
+        setProjects(data);
       });
   }, []);
 
@@ -38,10 +43,8 @@ function App() {
       });
   }, []);
 
+  console.log(user.id);
 
-console.log(editProject.project_name)
-
-  
   function adminDelete(id) {
     const updatedCustomers = customers.filter((customer) => customer.id !== id);
     setCustomers(updatedCustomers);
@@ -49,6 +52,10 @@ console.log(editProject.project_name)
   function handleDelete(id) {
     const updatedProjects = projects.filter((project) => project.id !== id);
     setProjects(updatedProjects);
+  }
+  function handleDeleteItem(id) {
+    const updatedItems = storeItems.filter((item) => item.id !== id);
+    setStoreItems(updatedItems);
   }
 
   function addNewProject(addedProject) {
@@ -94,6 +101,24 @@ console.log(editProject.project_name)
               handleDelete={handleDelete}
               editProject={editProject}
               setEditProject={setEditProject}
+
+
+            />
+          }
+        />
+        <Route
+          path="/Customerprojects/Edititems"
+          element={
+            <Edititems
+              user={user}
+              setUser={setUser}
+              noUsers={noUsers}
+              editProject={editProject}
+              setEditProject={setEditProject}
+              storeItems={storeItems}
+              setStoreItems={setStoreItems}
+              addNewItem={addNewItem}
+              handleDeleteItem={handleDeleteItem}
             />
           }
         />
@@ -130,17 +155,14 @@ console.log(editProject.project_name)
               user={user}
               noUsers={noUsers}
               addNewProject={addNewProject}
+              projects={projects}
+              setProjects={setProjects}
             />
           }
         />
-                <Route
+        <Route
           path="/Customerinfo"
-          element={
-            <Customerinfo
-              user={user}
-              projects={projects}
-            />
-          }
+          element={<Customerinfo user={user} projects={projects} />}
         />
       </Routes>
     </div>
@@ -154,7 +176,6 @@ console.log(editProject.project_name)
 // console.log(Switch("Yes")); // 517
 // console.log(Switch("No"));  // 518
 // console.log(Switch("Non matching value")); // Empty
-
 
 ///ideas
 ////lets try making when the user clicks to add a project they are directed to that project page. from there they can add items to the project. once all the items are added they can make a post request for all the items to be added to the project.
@@ -181,7 +202,6 @@ export default App;
 // </div>
 // );
 // }
-
 
 // return (
 //   <tr>

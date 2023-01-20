@@ -38,6 +38,7 @@ function Login({ setCustomers, customers, user, setUser, noUsers }) {
   }
   return (
     <div className="global-container">
+      <h2>kurtv0727@gmail.com</h2>
       <div className="card login-form">
         <div className="card-body">
           <h3 className="card-title text-center">Login</h3>
