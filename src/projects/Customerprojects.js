@@ -10,36 +10,38 @@ function Customerprojects({
   setEditProject,
 }) {
   
-  console.log(user.id)
-  console.log(projects);
- 
-  const customerproj = projects.map((project) => (
-    project.customer_id > 0 && user != null ? (
-    <Projectcard
-      key={project.id}
-      project={project}
-      handleDelete={handleDelete}
-      user={user}
-      editProject={editProject}
-      setEditProject={setEditProject}
-    />
-    ) : null
-  ));
+const userProj = projects.filter((project) => project.customer_id === user.id)
 
+
+  const customerproj = projects.map((project) =>
+    project.customer_id === user.id && user != null ? (
+      <Projectcard
+        key={project.id}
+        project={project}
+        handleDelete={handleDelete}
+        user={user}
+        editProject={editProject}
+        setEditProject={setEditProject}
+      />
+    ) : null
+  );
+console.log(userProj)
   return (
     <div>
-    {noUsers ? <h2>no users</h2> : <h2>{user.full_name}'s Projects</h2>}
-    <div className="container">
-      
-      {/* {user.projects.length === 0 ? (
-        <h3>No Projects. Go to Create Projects to get started!</h3>) 
-        : ( */}
-        
-        <div className="row">
-          {customerproj}
-        </div>
-        {/* )} */}
-    </div>
+      {noUsers ? (
+        <h2 className="p-5 title text-center">no users</h2>
+      ) : (
+        <h2 className="p-5 title text-center">{user.full_name}'s Projects</h2>
+      )}
+      <div className="container">
+        {userProj.length === 0 ? (
+          <h3 className="p-5 title text-center">
+            No Projects. Go to Create Projects to get started!
+          </h3>
+        ) : (
+          <div className="row">{customerproj}</div>
+        )}
+      </div>
     </div>
   );
 }

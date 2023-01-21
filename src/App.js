@@ -43,7 +43,13 @@ function App() {
       });
   }, []);
 
-  console.log(user.id);
+
+  function updateQuantity(patchedItem) {
+    const updatedQuantity = storeItems.map((item) =>
+      item.id === patchedItem.id ? patchedItem : item
+      );
+      setStoreItems(updatedQuantity)
+  }
 
   function adminDelete(id) {
     const updatedCustomers = customers.filter((customer) => customer.id !== id);
@@ -119,6 +125,7 @@ function App() {
               setStoreItems={setStoreItems}
               addNewItem={addNewItem}
               handleDeleteItem={handleDeleteItem}
+              updateQuantity={updateQuantity}
             />
           }
         />

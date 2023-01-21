@@ -1,7 +1,7 @@
 import React from 'react'
 import Itemstoadd from './Itemstoadd'
 
-function Edititems({editProject, setEditProject, addNewItem, user, storeItems, setStoreItem, handleDeleteItem}) {
+function Edititems({editProject, setEditProject, addNewItem, user, storeItems, setStoreItem, handleDeleteItem, updateQuantity}) {
   
     
   const itemsList = storeItems.map((item) => (
@@ -14,6 +14,7 @@ item.project_id === editProject.id ? (
          editProject={editProject}
          addNewItem={addNewItem}
          handleDeleteItem={handleDeleteItem}
+          updateQuantity={updateQuantity}
        />
      ) : null
     ) 
