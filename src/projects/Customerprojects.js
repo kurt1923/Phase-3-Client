@@ -8,13 +8,14 @@ function Customerprojects({
   handleDelete,
   editProject,
   setEditProject,
+  projectPics
 }) {
   
 const userProj = projects.filter((project) => project.customer_id === user.id)
 
 
-  const customerproj = projects.map((project) =>
-    project.customer_id === user.id && user != null ? (
+  const customerproj = userProj.map((project) =>
+    user != null ? (
       <Projectcard
         key={project.id}
         project={project}
@@ -22,6 +23,7 @@ const userProj = projects.filter((project) => project.customer_id === user.id)
         user={user}
         editProject={editProject}
         setEditProject={setEditProject}
+        projectPics={projectPics}
       />
     ) : null
   );

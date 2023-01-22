@@ -4,7 +4,7 @@ function Itemstoadd({item, handleDeleteItem, updateQuantity}) {
   const [newQuantity, setNewQuantity] = useState(0)
   
   
-  console.log(newQuantity)
+
   
   const newItemData = {
     item_name: item.item_name,

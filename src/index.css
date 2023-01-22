@@ -12,12 +12,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 img{
-  height:150px;
+  height:160px;
   width:100%;
 }
 img.homepic{
-  height:60%;
-  width:60%;
+  height:70%;
+  width:70%;
   justify-items: center;
 }
 
@@ -78,9 +78,9 @@ img.homepic{
 img.logo {
   vertical-align: -42%;
   width: 90px;
-  height: 45px;
-  margin-bottom: 7px;
-  margin-left: -10px;
+  height: 49px;
+  margin-bottom: 5px;
+  margin-left: -3px;
 }
 .global-container{
 	height:100%;
@@ -188,4 +188,35 @@ table tr td.total-number .number {
 table tr td.total-number .dollar-sign { 
   padding-top: 10px;
   margin-left: 10px;
+}
+
+.nav-link{
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.nav-link:hover{
+  color: #fc3232;
+  transform: scale(1.1);
+}
+
+.nlink{
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+#btns{
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 10px;
+  text-decoration: none;
+  transition: 0.3s;
 }

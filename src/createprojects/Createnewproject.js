@@ -1,16 +1,8 @@
 import React from "react";
 import Newprojectcards from "./Newprojectcards";
 
-function Createnewproject({ user, addNewProject, noUsers, projects }) {
-  // const [newProjects, setNewProjects] = useState([]);
+function Createnewproject({ user, addNewProject, noUsers, projects, projectPics }) {
 
-  // useEffect(() => {
-  //   fetch(`http://127.0.0.1:9292/projects`)
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       setNewProjects(data);
-  //     });
-  // }, []);
 console.log(projects)
 
   const newProjectCards = projects.map((project) =>
@@ -21,6 +13,8 @@ console.log(projects)
         user={user}
         addNewProject={addNewProject}
         items={project.items}
+        projectPics={projectPics}
+
       />
     ) : null
   );

@@ -16,9 +16,19 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [editProject, setEditProject] = useState([]);
   const [storeItems, setStoreItems] = useState([]);
+  const projectPics = [{ id:1, category: "Add Ceiling Fan", pics: "./pics/fan.jpg" },
+      { id:2, category: "Change Fan/Light", pics: "./pics/fan.jpg" },
+      { id:3, category: "Receptacle", pics: "./pics/recepacle.jpg" },
+      { id:4, category: "Devices", pics: "./pics/devices.jpg" },
+      { id:5, category: "GFCI", pics: "./pics/gfci-outlet.jpg" },
+      { id:6, category: "Wafer Lights", pics: "./pics/wafer.jpg" },
+      { id:7, category: "Flood Lights", pics: "./pics/flood.jpg" },
+      { id:8, category: "Replace Breaker", pics: "./pics/breaker.jpg" },
+      { id:9, category: "Home Surge Protection", pics: "./pics/surge.jpg" },
+      { id:10, category: "Exterior Receptacle", pics: "./pics/exteriorreceptacle.jpg" }
+    ]
   const noUsers = user === undefined || user.length === 0;
   
-
   useEffect(() => {
     fetch("http://127.0.0.1:9292/customers")
       .then((r) => r.json())
@@ -43,14 +53,12 @@ function App() {
       });
   }, []);
 
-
   function updateQuantity(patchedItem) {
     const updatedQuantity = storeItems.map((item) =>
       item.id === patchedItem.id ? patchedItem : item
       );
       setStoreItems(updatedQuantity)
   }
-
   function adminDelete(id) {
     const updatedCustomers = customers.filter((customer) => customer.id !== id);
     setCustomers(updatedCustomers);
@@ -63,7 +71,6 @@ function App() {
     const updatedItems = storeItems.filter((item) => item.id !== id);
     setStoreItems(updatedItems);
   }
-
   function addNewProject(addedProject) {
     const updatedProjects = [...projects, addedProject];
     setProjects(updatedProjects);
@@ -72,9 +79,10 @@ function App() {
     const updatedItems = [...storeItems, addedItem];
     setStoreItems(updatedItems);
   }
-
   function logOut() {
     setUser([]);
+
+
   }
   return (
     <div className="App">
@@ -107,6 +115,7 @@ function App() {
               handleDelete={handleDelete}
               editProject={editProject}
               setEditProject={setEditProject}
+              projectPics={projectPics}
 
 
             />
@@ -164,6 +173,7 @@ function App() {
               addNewProject={addNewProject}
               projects={projects}
               setProjects={setProjects}
+              projectPics={projectPics}
             />
           }
         />
@@ -175,52 +185,8 @@ function App() {
     </div>
   );
 }
-// const Switch = (str) => ({
-//   "Yes": "517",
-//   "No": "518",
-// })[str] || '';
 
-// console.log(Switch("Yes")); // 517
-// console.log(Switch("No"));  // 518
-// console.log(Switch("Non matching value")); // Empty
 
-///ideas
-////lets try making when the user clicks to add a project they are directed to that project page. from there they can add items to the project. once all the items are added they can make a post request for all the items to be added to the project.
 
 export default App;
 
-// return (
-//   <div className="container">
-//   <h2 className="p-5 title text-center">Select Items To Add To Your {editProject.project_name} Project</h2>
-//   <h4 className="p-2 title text-center">{editProject.project_description}</h4>
-//   <table>
-//    <tr>
-//        <th>Items</th>
-//        <th>Quantity</th>
-//        <th>Price</th>
-//    </tr>
-//     {itemsList}
-//    <tr>
-//        <td className="total-text" colspan="2">Total Price</td>
-//        <td className="total-number"><span className="number">0</span><span className="dollar-sign">$</span></td>
-//    </tr>
-// </table>
-
-// </div>
-// );
-// }
-
-// return (
-//   <tr>
-//     <td className="item">{storeItem.item_name}</td>
-//     <td className="quantity">
-//       <input type="tel" name="qty" value= {quantity} onChange= {(e) => setQuantity(e.target.value)} placeholder="Enter your Quantity" />
-//     </td>
-//     <td className="price">
-//       <span>{storeItem.item_cost*storeItem.quantity}</span> $
-//     </td>
-//     <button className="m-2 btn btn-secondary">Add to Project</button>
-//     <button className="m-2 btn btn-secondary">Update Quantity</button>
-//   </tr>
-// );
-// }
