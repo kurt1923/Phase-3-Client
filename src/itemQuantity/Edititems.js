@@ -5,7 +5,8 @@ function Edititems({editProject, setEditProject, addNewItem, user, storeItems, s
   
   const itemsFilter = storeItems.filter((item) => item.project_id === editProject.id)
   const itemsValue = itemsFilter.map((item) => (item.item_cost * item.quantity)).reduce((a, b) => a + b, 0)
-
+  const projTotal = parseInt(itemsValue) + parseInt(editProject.labor_cost)
+  
   const itemsList = itemsFilter.map((item) => (
 item.project_id === editProject.id ? (
         <Itemstoadd
@@ -16,13 +17,13 @@ item.project_id === editProject.id ? (
          editProject={editProject}
          addNewItem={addNewItem}
          handleDeleteItem={handleDeleteItem}
-          updateQuantity={updateQuantity}
+         updateQuantity={updateQuantity}
        />
      ) : null
     ) 
   )
   
-console.log(editProject)
+console.log(parseInt(itemsValue))
 
 return (
   <div className="container">
@@ -38,11 +39,11 @@ return (
     {itemsList}
    <tr>
        <td className="total-text" colSpan="2">Total Price</td>
-       <td className="total-number"><span className="number">{itemsValue} $</span><span className="dollar-sign">$</span></td>
+       <td className="total-number"><span className="number">{itemsValue}$</span><span className="dollar-sign">$</span></td>
    </tr>
    </tbody>
 </table>
-
+<h2 className="p-5 title text-center">Project total including labor cost is {projTotal}$</h2>
 </div>
 );
 }

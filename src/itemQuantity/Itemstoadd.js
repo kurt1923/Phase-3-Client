@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-function Itemstoadd({item, handleDeleteItem, updateQuantity}) {
-  const [newQuantity, setNewQuantity] = useState(0)
+function Itemstoadd({item, handleDeleteItem, updateQuantity, editProject}) {
+  const [newQuantity, setNewQuantity] = useState(item.quantity)
   
   
 
@@ -43,15 +43,17 @@ function Itemstoadd({item, handleDeleteItem, updateQuantity}) {
 
     return (
   <tr>
-    <td className="item">{item.item_name}={item.quantity}</td>
+    <td className="item">{item.item_name}</td>
     <td className="quantity">
       <input type="number" name="quantity" value={newQuantity} onChange={(e) => setNewQuantity(e.target.value)} placeholder="Enter your Quantity" />
     </td>
     <td className="price">
-      <span>{item.item_cost*item.quantity}</span> $
+      <span>{item.item_cost*item.quantity}</span>$
     </td>
+    <>
     <button className="m-2 btn btn-secondary" onClick={changeQuantity} >Update Quantity</button>
     <button className="m-2 btn btn-secondary" onClick={deleteItem} >Delete Item</button>
+    </>
   </tr>
 )
 }

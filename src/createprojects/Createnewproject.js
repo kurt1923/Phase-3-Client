@@ -3,7 +3,7 @@ import Newprojectcards from "./Newprojectcards";
 
 function Createnewproject({ user, addNewProject, noUsers, projects, projectPics }) {
 
-console.log(projects)
+
 
   const newProjectCards = projects.map((project) =>
     project.customer_id === 0 && user != null ? (

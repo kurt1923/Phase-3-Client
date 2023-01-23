@@ -1,6 +1,6 @@
 import React from "react";
 
-function Itemcards({ storeItem, user, setEditProject, editProject, storeItems, setStoreItems, addNewItem }) {
+function Itemcards({ storeItem, editProject, addNewItem }) {
   
   function submitNewItem(e) {
     const newItemData = {
@@ -33,7 +33,9 @@ console.log(editProject.id)
       <td className="price">
         <span>{storeItem.item_cost}</span> $
       </td>
+      <>
       <button className="m-2 btn btn-secondary" onClick={submitNewItem}>Add to Project</button>
+      </>
     </tr>
     </>
   );
