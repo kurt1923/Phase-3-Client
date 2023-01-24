@@ -6,7 +6,6 @@ function Customerprojects({
   noUsers,
   projects,
   handleDelete,
-  editProject,
   setEditProject,
   projectPics
 }) {
@@ -20,8 +19,6 @@ const userProj = projects.filter((project) => project.customer_id === user.id)
         key={project.id}
         project={project}
         handleDelete={handleDelete}
-        user={user}
-        editProject={editProject}
         setEditProject={setEditProject}
         projectPics={projectPics}
       />

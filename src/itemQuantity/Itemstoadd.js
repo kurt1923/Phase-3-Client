@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Itemstoadd({item, handleDeleteItem, updateQuantity, editProject}) {
+function Itemstoadd({item, handleDeleteItem, updateQuantity}) {
   const [newQuantity, setNewQuantity] = useState(item.quantity)
   
   

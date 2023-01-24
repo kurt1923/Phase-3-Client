@@ -8,7 +8,7 @@ function Itemcards({ storeItem, editProject, addNewItem }) {
       item_cost: storeItem.item_cost,
       project_id: editProject.id,
       project_category: storeItem.project_category,
-      quantity: 1
+      quantity: 0
     };
     e.preventDefault();
     fetch(`http://127.0.0.1:9292/items`, {
@@ -21,6 +21,7 @@ function Itemcards({ storeItem, editProject, addNewItem }) {
       .then((r) => r.json())
       .then((data) => {
         addNewItem(data);
+        alert(`${storeItem.item_name} Added to Project`)
       });
   }
   
